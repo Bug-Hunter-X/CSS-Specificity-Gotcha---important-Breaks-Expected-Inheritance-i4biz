@@ -1,0 +1,21 @@
+The solution avoids the use of `!important` by restructuring the CSS rules to prioritize expected inheritance. A more specific rule targets the nested span, and the inheritance chain is preserved without the unexpected overriding of `font-size`.  Instead of the `!important` declaration, the specificity of the selector is adjusted to correctly target the nested `<span>`:
+
+```css
+div {
+  font-size: 16px;
+}
+
+.container div {
+  font-size: 18px;
+}
+
+.container p {
+  font-size: 20px;
+}
+
+.container div span {
+  font-size: 14px;
+}
+```
+
+This approach ensures that the styles are applied predictably and maintainably, and it avoids the potential pitfalls of `!important`.

@@ -1,0 +1,21 @@
+The following CSS code snippet suffers from an uncommon issue related to specificity and inheritance:
+
+```css
+div {
+  font-size: 16px;
+}
+
+.container div {
+  font-size: 18px;
+}
+
+.container p {
+  font-size: 20px;
+}
+
+.container span {
+  font-size: 14px !important;
+}
+```
+
+The problem arises when a `<span>` element is nested within a `<div>` inside the `.container` element.  The `!important` declaration on the `.container span` has higher specificity than the rule for `.container div`, causing the `font-size: 14px` to override `font-size: 18px` even though the `<div>` is a parent element and inheritance might be expected to apply more naturally.  In cases where developers expect inheritance without realizing the `!important` implications, this can lead to unexpected behavior and visual inconsistencies.
